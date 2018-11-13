@@ -11,7 +11,7 @@ function createWindows() {
     });
     // win1.webContents.openDevTools();
     win1.loadURL('file://' + __dirname + '/templates/index.html');
-    win1.on('closed', function () { return win1 = null; });
+    win1.on('closed', function () { win1 = null; });
 }
 electron_1.app.on('ready', createWindows);
 // Mac-darwin codes

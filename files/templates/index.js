@@ -13,5 +13,5 @@ function showAbout() {
     var template = [];
     Menu.setApplicationMenu(null);
     aboutWindow.loadURL('file://' + __dirname + '/about.html');
-    aboutWindow.on('closed', function () { return aboutWindow = null; });
+    aboutWindow.on('closed', function () { aboutWindow = null; });
 }

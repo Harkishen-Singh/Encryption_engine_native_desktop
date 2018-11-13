@@ -14,7 +14,7 @@ function createWindows() {
     // win1.webContents.openDevTools();
     win1.loadURL('file://'+__dirname+'/templates/index.html');
 
-    win1.on('closed', () => win1 = null);
+    win1.on('closed', () => {win1 = null;});
 }
 
 app.on('ready', createWindows);

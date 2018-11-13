@@ -15,6 +15,6 @@ function showAbout() {
     let template: string[] = [];
     Menu.setApplicationMenu(null);
     aboutWindow.loadURL('file://'+__dirname+'/about.html');
-    aboutWindow.on('closed', () => aboutWindow = null);
+    aboutWindow.on('closed', () => {aboutWindow = null;});
 }
 
