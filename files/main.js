@@ -5,7 +5,7 @@ var electron_1 = require("electron");
 var win1;
 function createWindows() {
     win1 = new electron_1.BrowserWindow({
-        width: 600,
+        width: 800,
         height: 600,
         backgroundColor: '#fff'
     });

@@ -7,7 +7,7 @@ let win1: any;
 
 function createWindows() {
     win1 = new BrowserWindow({
-        width: 600,
+        width: 800,
         height: 600,
         backgroundColor: '#fff'
     });
