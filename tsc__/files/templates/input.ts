@@ -82,8 +82,8 @@ var submits =  () => {
                 value: alpha[i]
             });
             }
-            console.log('dic below')
-            console.log(dic)
+            // console.log('dic below')
+            // console.log(dic)
             open_file();
 
     }
@@ -103,6 +103,7 @@ var submits =  () => {
         }
         }
     }
+    dialog.showErrorBox('Encrypted Code', new_file);
     createEncryptedFile();
     //console.log('The Encrypted Code is below :\n\n' + new_file);
     //new_file="";
