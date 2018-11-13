@@ -1,0 +1,14 @@
+{
+  "name": "encryption_desktop",
+  "version": "1.0.0",
+  "description": "Encryption engine for native desktop applications",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ./files/main.js"
+  },
+  "author": "Harkishen Singh",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^3.0.9"
+  }
+}
