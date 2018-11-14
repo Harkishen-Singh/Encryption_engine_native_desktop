@@ -15,8 +15,5 @@ function showAbout() {
     aboutWindow.loadURL('file://' + __dirname + '/about.html');
     aboutWindow.on('closed', function () { aboutWindow = null; });
 }
-
-let ele = document.getElementById('thisss')
-
-if(ele) 
-ele.addEventListener('click', showAbout(), false);
+var ele = document.getElementById('thisss');
+ele.onclick = function () { showAbout(); };

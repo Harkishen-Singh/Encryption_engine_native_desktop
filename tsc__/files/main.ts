@@ -1,4 +1,4 @@
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import url from 'url';
 
@@ -11,11 +11,17 @@ function createWindows() {
         height: 600,
         backgroundColor: '#fff'
     });
-    // win1.webContents.openDevTools();
+    win1.webContents.openDevTools();
     win1.loadURL('file://'+__dirname+'/templates/index.html');
 
     win1.on('closed', () => {win1 = null;});
 }
+
+ipcMain.on('encryptedCode', (event: any, data: any) => {
+    console.log('information received from renderer proces below');
+    console.warn(data)
+    console.warn(event)
+})
 
 app.on('ready', createWindows);
 

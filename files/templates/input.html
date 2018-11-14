@@ -4,18 +4,18 @@
 
 <body>
     <h5 style="color: red; font-weight: bold;"> Please Enter the code you want to Encrypt below.</h5>
-    <script src=""">
-        require('./input.js')
-    </script>
+    
     <form style="text-align: center;" >
       <fieldset>
         <legend>Text to be Encrypted</legend>
         Name : <input type="text" value="user_name" name="user_name" id="nameUser" maxlength="30"/>
         Email ID : <input type="text" value="emailId" name="emailId" maxlength="30"/>
         <textarea rows="30" cols="80" name="code" id='message' > Enter the text here.</textarea>
-        <input type="submit" onclick="submits();" value="CLick Here to Submit"/>
+        <input type="submit" id='submitted' value="Get encrypted code"/>
       </fieldset>
     </form>
-    
+    <script>
+      require('./input.js')
+  </script>
 </body>
 </html>

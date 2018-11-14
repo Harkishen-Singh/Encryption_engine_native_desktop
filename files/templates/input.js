@@ -8,6 +8,7 @@ var BrowserWindow2 = require('electron').remote.BrowserWindow;
 var dialog = require('electron').remote.dialog;
 var ipc = require('electron').ipcRenderer;
 var submits = function () {
+    // dialog.showErrorBox('This is an err','some random error')
     var user_name = document.getElementById('nameUser').innerText;
     var data = document.getElementById('message').innerText;
     console.log(data);
@@ -38,7 +39,7 @@ var submits = function () {
             val = "";
         }
         console.warn('alpha below');
-        console.warn(alpha);
+        // console.warn(alpha)
         file_saving();
     }
     code_allocation2();
@@ -67,8 +68,8 @@ var submits = function () {
             al[i - 33] = String.fromCharCode(i);
         dic_assign();
     }
-    var dic = [];
     function dic_assign() {
+        var dic = [];
         for (var i = 0; i < 2967; i++) {
             dic.push({
                 key: al[i],
@@ -77,43 +78,37 @@ var submits = function () {
         }
         // console.log('dic below')
         // console.log(dic)
-        open_file();
+        open_file(dic);
     }
     var new_ch = "";
-    function open_file() {
+    function open_file(dic) {
         var code1 = data;
+        console.log('data is ');
+        console.warn(data);
         for (var i = 0; i < data.length; i++) {
             var ch = data.charAt(i);
             for (var j = 0; j < dic.length; j++) {
                 if (ch == dic[j].key) {
                     new_file = new_file + dic[j].value;
-                    //console.log('dic['+i+'] key :' + dic[j].key);
-                    //console.log('dic['+i+'] value :' + dic[j].value);
+                    console.log('got inside');
+                    ipc.send('encryptedCode', ' openfile');
                     break;
                 }
             }
         }
-        dialog.showErrorBox('Encrypted Code', new_file);
-        createEncryptedFile();
-        //console.log('The Encrypted Code is below :\n\n' + new_file);
-        //new_file="";
+        outputWindow(new_file);
+        dialog.showErrorBox('Output encryted', new_file);
     }
-    function createEncryptedFile() {
-        var ran = String(Math.floor(Math.random() * 100));
-        var name = ran + "Encrypted_file_source.txt";
-        fs.open(name, 'w', function (err) {
-            if (err)
-                console.error('Error occured while making he excrypted file source');
-        });
-        fs.appendFile(name, new_file, function (err) {
-            if (err)
-                console.error('Error occured hile appending the FIle created for the source');
-        });
-    }
-    function outputWindow() {
+    function outputWindow(new_file) {
         var outputWindowBW = new BrowserWindow2({
             height: 600,
             width: 800
         });
+        outputWindowBW.loadURL('file://' + __dirname + '/output.html');
+        ipc.send('encryptedCode', ' hi baby');
+        outputWindowBW.on('closed', function () { outputWindowBW = null; });
     }
+};
+document.getElementById('submitted').onclick = function () {
+    submits();
 };

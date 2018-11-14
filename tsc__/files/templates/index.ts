@@ -18,3 +18,6 @@ function showAbout() {
     aboutWindow.on('closed', () => {aboutWindow = null;});
 }
 
+let ele: any = document.getElementById('thisss');
+ele.onclick = () =>  {showAbout()};
+

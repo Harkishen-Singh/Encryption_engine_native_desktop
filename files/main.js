@@ -9,10 +9,15 @@ function createWindows() {
         height: 600,
         backgroundColor: '#fff'
     });
-    // win1.webContents.openDevTools();
+    win1.webContents.openDevTools();
     win1.loadURL('file://' + __dirname + '/templates/index.html');
     win1.on('closed', function () { win1 = null; });
 }
+electron_1.ipcMain.on('encryptedCode', function (event, data) {
+    console.log('information received from renderer proces below');
+    console.warn(data);
+    console.warn(event);
+});
 electron_1.app.on('ready', createWindows);
 // Mac-darwin codes
 // app.on('window-all-closed', () => {
