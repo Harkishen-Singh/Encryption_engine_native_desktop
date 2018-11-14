@@ -5,13 +5,14 @@
   "main": "./files/main.js",
   "scripts": {
     "test": "electron ./files/main.js",
-    "build": "electron-packager . EncryptionEngine"
+    "build": "electron-packager . EncryptionEngine",
+    "package": "asar pack EncryptionEngine-linux-x64/resources/app EncryptionEngine-linux-x64/resources/app.asar"
   },
   "author": "Harkishen Singh",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "asar": "^0.14.5",
-    "electron": "^3.0.9",
-    "electron-packager": "^12.2.0"
+    "electron-packager": "^12.2.0",
+    "electron": "^3.0.9"
   }
 }
