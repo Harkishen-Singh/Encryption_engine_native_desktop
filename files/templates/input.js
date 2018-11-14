@@ -9,9 +9,10 @@ var dialog = require('electron').remote.dialog;
 var ipc = require('electron').ipcRenderer;
 var submits = function () {
     // dialog.showErrorBox('This is an err','some random error')
-    var user_name = document.getElementById('nameUser').innerText;
-    var data = document.getElementById('message').innerText;
+    var user_name = document.getElementById('nameUser').innerHTML;
+    var data = document.getElementById('message').innerHTML;
     console.log(data);
+    // dialog.showErrorBox('data is', data)
     var alpha = new Array(3000 - 33);
     var al = [];
     function code_allocation2() {
@@ -85,19 +86,21 @@ var submits = function () {
         var code1 = data;
         console.log('data is ');
         console.warn(data);
+        // dialog.showErrorBox('sth', data);
         for (var i = 0; i < data.length; i++) {
             var ch = data.charAt(i);
             for (var j = 0; j < dic.length; j++) {
                 if (ch == dic[j].key) {
                     new_file = new_file + dic[j].value;
                     console.log('got inside');
-                    ipc.send('encryptedCode', ' openfile');
+                    // ipc.send('encryptedCode', ' openfile');
                     break;
                 }
             }
         }
-        outputWindow(new_file);
-        dialog.showErrorBox('Output encryted', new_file);
+        // outputWindow(new_file);
+        // dialog.showErrorBox('Output encryted', new_file)
+        ipc.send('encryptedCode', new_file);
     }
     function outputWindow(new_file) {
         var outputWindowBW = new BrowserWindow2({
@@ -105,7 +108,6 @@ var submits = function () {
             width: 800
         });
         outputWindowBW.loadURL('file://' + __dirname + '/output.html');
-        ipc.send('encryptedCode', ' hi baby');
         outputWindowBW.on('closed', function () { outputWindowBW = null; });
     }
 };

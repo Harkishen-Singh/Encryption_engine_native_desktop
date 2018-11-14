@@ -17,6 +17,15 @@ electron_1.ipcMain.on('encryptedCode', function (event, data) {
     console.log('information received from renderer proces below');
     console.warn(data);
     console.warn(event);
+    var outputWindowBW = new electron_1.BrowserWindow({
+        height: 600,
+        width: 800
+    });
+    outputWindowBW.loadURL('file://' + __dirname + '/templates/output.html');
+    outputWindowBW.webContents.on('did-finish-load', function () {
+        outputWindowBW.webContents.send('dataEncrytped', data);
+    });
+    outputWindowBW.on('closed', function () { outputWindowBW = null; });
 });
 electron_1.app.on('ready', createWindows);
 // Mac-darwin codes

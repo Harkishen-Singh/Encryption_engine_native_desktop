@@ -21,6 +21,20 @@ ipcMain.on('encryptedCode', (event: any, data: any) => {
     console.log('information received from renderer proces below');
     console.warn(data)
     console.warn(event)
+
+    let outputWindowBW = new BrowserWindow({
+        height:600,
+        width: 800
+    });
+    outputWindowBW.loadURL('file://'+__dirname+'/templates/output.html');
+
+    outputWindowBW.webContents.on('did-finish-load', () => {
+        outputWindowBW.webContents.send('dataEncrytped', data);
+    })
+    
+    
+    outputWindowBW.on('closed', () => {outputWindowBW = null;});
+
 })
 
 app.on('ready', createWindows);
