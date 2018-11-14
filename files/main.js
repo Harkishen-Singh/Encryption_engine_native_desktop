@@ -9,7 +9,7 @@ function createWindows() {
         height: 600,
         backgroundColor: '#fff'
     });
-    win1.webContents.openDevTools();
+    // win1.webContents.openDevTools();
     win1.loadURL('file://' + __dirname + '/templates/index.html');
     win1.on('closed', function () { win1 = null; });
 }
@@ -21,6 +21,7 @@ electron_1.ipcMain.on('encryptedCode', function (event, data) {
         height: 600,
         width: 800
     });
+    electron_1.Menu.setApplicationMenu(null);
     outputWindowBW.loadURL('file://' + __dirname + '/templates/output.html');
     outputWindowBW.webContents.on('did-finish-load', function () {
         outputWindowBW.webContents.send('dataEncrytped', data);
